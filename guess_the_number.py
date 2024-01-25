@@ -1,3 +1,11 @@
+"""
+1. Follow the instructions in the slides to resolve the two issues in the guess the number program.
+Note the hints in the issues.
+2. Create pull requests, review each other's code.
+3. Create a merge conflict, and fix it.
+4. Create two new issues requested, assign them, and fix them.
+5. Submit a link to your GitHub repository.
+"""
 import random
 
 correct = 'you guessed correctly!'
@@ -36,14 +44,20 @@ def main():
     secret = generate_secret(low, high)
 
     while True:
-        guess = get_guess()
-        result = check_guess(guess, secret)
-        print(result)
+        try: # fix to issue input validation - added ValueError handling
+            guess = int(input('Please enter an integer number: '))
+            guess = get_guess()
+            result = check_guess(guess, secret)
+            print(f'Thank you for entering the number {guess}')
+            print(result)
 
-        if result == correct:
-            break
+            if result == correct:
+                break
 
-    print('Thanks for playing the game!')
+        except ValueError:
+            print('That was not an integer number. Try again.')
+
+    print(f'Thanks for playing the game! You guessed {guess} times!')  # fix to issue #42
 
 
 if __name__ == '__main__':
