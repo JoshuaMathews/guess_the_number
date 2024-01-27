@@ -42,11 +42,13 @@ def main():
 
     (low, high) = configure_range()
     secret = generate_secret(low, high)
+    guesses = 0
 
     while True:
         try: # fix to issue input validation - added ValueError handling
-            guess = int(input('Please enter an integer number: '))
+            # guess = int(input('Please enter an integer number: '))
             guess = get_guess()
+            guesses = guesses + 1
             result = check_guess(guess, secret)
             print(f'Thank you for entering the number {guess}')
             print(result)
@@ -57,7 +59,7 @@ def main():
         except ValueError:
             print('That was not an integer number. Try again.')
 
-    print(f'Thanks for playing the game! You guessed {guess} times!')  # fix to issue #42
+    print(f'Thanks for playing the game! You guessed {guesses} times!')  # fix to issue #42
 
 
 if __name__ == '__main__':
